@@ -16,6 +16,7 @@ import YZListView from "./lib/components/YZListView";
 import YZLoadingFooter from "./lib/components/YZLoadingFooter";
 import YZTabs from "./lib/components/YZTabs";
 import YZTextarea from "./lib/components/YZTextarea";
+import YZHeader from "./lib/components/YZHeader";
 
 export {
     useNavInfo,
@@ -34,5 +35,6 @@ export {
     YZListView,
     YZLoadingFooter,
     YZTabs,
-    YZTextarea
+    YZTextarea,
+    YZHeader
 }

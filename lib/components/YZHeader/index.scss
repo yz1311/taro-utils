@@ -1,0 +1,13 @@
+.yz-header-container {
+  position: relative;
+  .yz-header-content-container {
+
+  }
+  .yz-header-content-container__inactive {
+    .at-nav-bar {
+      &__left-view:active {
+        background-color: transparent !important;
+      }
+    }
+  }
+}
