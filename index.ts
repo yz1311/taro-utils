@@ -17,6 +17,7 @@ import YZLoadingFooter from "./lib/components/YZLoadingFooter";
 import YZTabs from "./lib/components/YZTabs";
 import YZTextarea from "./lib/components/YZTextarea";
 import YZHeader from "./lib/components/YZHeader";
+import YZFloatLayout from "./lib/components/YZFloatLayout";
 
 export {
     useNavInfo,
@@ -36,5 +37,6 @@ export {
     YZLoadingFooter,
     YZTabs,
     YZTextarea,
-    YZHeader
+    YZHeader,
+    YZFloatLayout
 }
