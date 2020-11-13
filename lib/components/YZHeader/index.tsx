@@ -21,9 +21,9 @@ const YZHeader: FC<IProps> = ({className, title, leftIconType, ...rest})=>{
             <View style={`background-color: transparent; height: ${statusBarHeight}px;`} />
             <View className={`${leftIconType?'yz-header-content-container':'yz-header-content-container__inactive'}`}>
                 <AtNavBar
+                    color="white"
                     {...(rest||{})}
                     title={title as any}
-                    color="white"
                     leftIconType={leftIconType}
                     onClickLeftIcon={()=>{
                         if(leftIconType) {
