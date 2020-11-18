@@ -8,7 +8,7 @@
  *
  * VirtualList必须要设置固定高度,不支持flex
  */
-import React, {useEffect, useRef, useState} from 'react'
+import React, {Component, ReactElement, useEffect, useRef, useState} from 'react'
 import {ScrollView, View} from "@tarojs/components";
 import YZLoadingFooter from "../YZLoadingFooter";
 import './index.scss';
@@ -28,6 +28,7 @@ interface IProps {
     isLoadingMore: boolean,
     onReachEnd: () => void,
     onRefresh: () => void,
+    ListHeaderComponent?: Function | ReactElement | Component,
     renderItem: ({item, index}: {item: any, index: number}) => void;
 }
 
@@ -35,6 +36,7 @@ function YZListView (props: IProps) {
     const {renderItem, wrapperClassName, listClassName, listStyle,
         wrapperStyle, itemData, isLoadingMore,
         contentClassName, contentStyle,
+        ListHeaderComponent,
         onRefresh, noMore, onReachEnd} = props;
     const [refresherEnabled, setRefresherEnabled] = useState(true);
 
@@ -75,6 +77,11 @@ function YZListView (props: IProps) {
             }}
             >
                 <View className={`yz-list-view__content ${contentClassName}`} style={contentStyle} >
+                    {typeof ListHeaderComponent == 'function' ?
+                        ListHeaderComponent()
+                        :
+                        ListHeaderComponent
+                    }
                     {
                         itemData.map((item,index)=>{
                             return renderItem&&renderItem({
