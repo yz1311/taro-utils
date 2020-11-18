@@ -86,6 +86,18 @@ export default class NavigationHelper {
   }
 
   /**
+   * 用新的页面替换当前页面
+   * @param routeName
+   * @param params
+   */
+  static replace (routeName, params?) {
+    const ext = generateParams(params);
+    Taro.redirectTo({
+      url: routeName + ext
+    });
+  }
+
+  /**
    * 刷新路由栈中的某一页面的某个方法
    * ps：只支持小程序
    */
