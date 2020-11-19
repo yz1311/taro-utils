@@ -34,7 +34,7 @@ export default class NavigationHelper {
     if(routePath&&routePath[0]=='/') {
       routePath = routePath.substr(1);
     }
-    return pages[pages.length-1].route != routePath;
+    return pages[pages.length-1].route == routePath;
   }
 
   static goBack () {
