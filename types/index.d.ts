@@ -18,6 +18,7 @@ import YZTabs from "../lib/components/YZTabs";
 import YZTextarea from "../lib/components/YZTextarea";
 import YZHeader from "../lib/components/YZHeader";
 import YZFloatLayout from "../lib/components/YZFloatLayout";
+import YZRadio from "../lib/components/YZRadio";
 
 export {
     useNavInfo,
@@ -38,5 +39,6 @@ export {
     YZTabs,
     YZTextarea,
     YZHeader,
-    YZFloatLayout
+    YZFloatLayout,
+    YZRadio
 }
