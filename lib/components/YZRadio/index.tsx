@@ -75,9 +75,9 @@ function RadioItem({disabled, label, value, desc, checked, style, handleClick}) 
                 value
             } as RadioOption<any>, e)}
             style={style}
-            className={`yz-radio__option ${disabled&&'yz-radio__option--disabled'}`}
+            className="yz-radio__option"
         >
-            <View className='yz-radio__option-wrap'>
+            <View className={`yz-radio__option-wrap ${disabled && 'yz-radio__option-wrap--disabled'}`}>
                 <View className='yz-radio__option-wrap__title'>{label}</View>
                 <View
                     className={`yz-radio__option-wrap__icon ${checked&&'yz-radio__option-wrap__icon--checked'}`}

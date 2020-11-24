@@ -12,14 +12,15 @@
       justify-content: space-between;
       padding: 0 30px;
       border-bottom: #e0e0e0 solid 1px;
+      color: #2c2c2c;
+      font-size: 32px;
 
       &--disabled {
-
+        color: #999999;
       }
 
       &__title {
-        font-size: 32px;
-        color: #2c2c2c;
+
       }
 
       &__icon {
