@@ -1,6 +1,8 @@
 .yz-list-item {
   .right-container {
     padding-right: 5px !important;
+    flex: 3 !important;
+    overflow: hidden !important;
   }
 
   $at-list-item-horizontal-padding: 20px;
@@ -41,5 +43,5 @@
 
 
 .at-list__item-extra {
-  max-width: 50vw !important;
+  max-width: initial !important;
 }
