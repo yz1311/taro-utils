@@ -9,6 +9,7 @@ interface IProps {
     thumb?: string;
     title: string|JSX.Element,
     extraText?: string|JSX.Element,
+    extraMultiline?: boolean;
     extraThumb?: string|JSX.Element,
     required?: boolean,
     detail?: JSX.Element,
@@ -19,7 +20,7 @@ interface IProps {
 }
 
 const YZListItem: FC<IProps> = ({className,onClick, detail, title,
-                                    thumb,
+                                    thumb, extraMultiline,
                                     extraText, extraThumb, note, required, arrow, hasBorder = true})=>{
     return (
         <View className={`yz-list-item at-list__item ${!arrow&&'at-list__item_patch'} ${!hasBorder&&'at-list__item--no-border'} ${className}`} onClick={onClick}>
@@ -40,7 +41,7 @@ const YZListItem: FC<IProps> = ({className,onClick, detail, title,
                     </View>
                 </View>
                 <View className='at-list__item-extra item-extra right-container'>
-                    {extraText && <View className={`item-extra__info ${!arrow&&'item-extra__info_patch'}`}>{extraText}</View>}
+                    {extraText && <View className={`item-extra__info ${extraMultiline&&'item-extra__info__multiline'} ${!arrow&&'item-extra__info_patch'}`}>{extraText}</View>}
                     {detail && detail}
                     {extraThumb && !extraText && (
                         <View className='item-extra__image'>

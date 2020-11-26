@@ -20,7 +20,13 @@
 
   .item-extra__info_patch {
     padding-right: 0px !important;
-    min-width: 50vw !important;
+    min-width: 55vw !important;
+    text-align: right !important;
+  }
+
+  .item-extra__info__multiline {
+    overflow: hidden !important;
+    white-space: normal !important;
     text-align: right !important;
   }
 
