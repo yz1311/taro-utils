@@ -1,8 +1,11 @@
 .yz-list-item {
   .right-container {
     padding-right: 5px !important;
-    flex: 2 !important;
+    flex: 1 !important;
     overflow: hidden !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   $at-list-item-horizontal-padding: 20px;
@@ -22,7 +25,6 @@
 
   .item-extra__info_patch {
     padding-right: 0px !important;
-    min-width: 55vw !important;
     text-align: right !important;
   }
 
