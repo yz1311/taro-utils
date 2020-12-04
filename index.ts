@@ -8,6 +8,7 @@ import ToastUtils from './lib/utils/toastUtils';
 import FormData from "./lib/utils/formData";
 import useNavInfo from "./lib/utils/hooks/useNavInfo";
 import useCommonShare from "./lib/utils/hooks/useCommonShare";
+import useMounted, {MountedDelays} from "./lib/utils/hooks/useMounted";
 
 
 import YZButton from "./lib/components/YZButton";
@@ -23,6 +24,8 @@ import YZRadio from "./lib/components/YZRadio";
 export {
     useNavInfo,
     useCommonShare,
+    useMounted,
+    MountedDelays,
     FormData,
     Alert,
     CommonUtils,
