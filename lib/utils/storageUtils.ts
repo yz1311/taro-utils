@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro';
 const StorageUtils = {
     // 缓存方法
     save: (key, value) => {
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             try {
                 Taro.setStorageSync(key, value);
                 resolve();
@@ -25,7 +25,7 @@ const StorageUtils = {
     },
     // 删除缓存
     remove: key => {
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             try {
                 Taro.removeStorageSync(key);
                 resolve();
