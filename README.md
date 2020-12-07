@@ -18,6 +18,10 @@ taro3的一些工具函数，主要这对从react native迁移到taro3的用户
 
 获取导航信息的hooks
 
+## useMounted
+
+延迟加载组件的hooks
+
 ## Alert
 
 类RN的Alert组件
