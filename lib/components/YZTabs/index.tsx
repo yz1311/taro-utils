@@ -3,8 +3,10 @@
  * 下面之所以有两个AtTabs，是因为在更新key的时候，会导致下面内容的滚动条置为0，导致滑动到顶部了
  * 第一个AtTabs是占位，第二个AtTabs才是实际作用的
  * 但是有个问题，tab切换的动画没了(只有一个AtTabs也没有动画，可能是设置key的原因)
+ *
+ * 2020/12/10 用Swiper实现了滑动功能
  */
-import {CommonEvent, View} from "@tarojs/components";
+import {CommonEvent, Swiper, SwiperItem, View} from "@tarojs/components";
 import React, {useEffect, useState} from "react";
 import {AtTabs} from 'taro-ui';
 import {TabItem} from "taro-ui/types/tabs";
@@ -30,9 +32,15 @@ interface IProps {
      * 点击或滑动时触发事件
      */
     onClick: (index: number, event: CommonEvent<any>)=>void;
+    /**
+     * 是否支持手势滑动切换内容页，
+     * 当 tabDirection='vertical'时，
+     * 无论是否设置，都不支持手势滑动切换内容页
+     */
+    swipeable: boolean;
 }
 
-function YZTabs({children, current, tabList, animated, onClick}:IProps) {
+function YZTabs({children, current, tabList, animated, onClick, swipeable}:IProps) {
     const [tempKey, setTempKey] = useState(new Date().getTime+'');
 
     useEffect(()=>{
@@ -53,7 +61,36 @@ function YZTabs({children, current, tabList, animated, onClick}:IProps) {
                 </View>
             </View>
             <View className="flex flex-column flex-grow-1 overflow-y-hidden relative">
-                {children}
+                {swipeable ?
+                    <Swiper
+                        current={current}
+                        disableTouch={true}
+                        onChange={e => {
+                            onClick && onClick(e.detail.current, e);
+                        }}
+                        className='flex-grow-1 overflow-y-hidden'
+                    >
+                        {
+                            children.map((item, index) => {
+                                return (
+                                    <SwiperItem key={index}>
+                                        {item}
+                                    </SwiperItem>
+                                );
+                            })
+                        }
+                    </Swiper>
+                    :
+                    children.map((item, index) => {
+                        return (
+                            <View
+                                className={current==index?'at-tabs-pane__visible':'at-tabs-pane__invisible'}
+                                key={index}>
+                                {item}
+                            </View>
+                        );
+                    })
+                }
             </View>
         </View>
     );
@@ -62,6 +99,7 @@ function YZTabs({children, current, tabList, animated, onClick}:IProps) {
 YZTabs.defaultProps = {
     current: 0,
     animated: true,
+    swipeable: true
 };
 
 export default React.memo(YZTabs);

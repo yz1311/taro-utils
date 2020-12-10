@@ -20,27 +20,6 @@
 }
 
 
-.at-tabs-pane__visible {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  z-index: 100;
-  //必须覆盖，否则如果内容过短，可能会显示隐藏的内容
-  background-color: white;
-}
-
-.at-tabs-pane__invisible {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  //防止多个tab叠加在一起显示多个loading的问题(因为loading的默认是absolute z-index:0)
-  z-index: -1;
-}
-
 //去掉AtFloatingLayout自带的padding
 .at-float-layout {
   .layout {
