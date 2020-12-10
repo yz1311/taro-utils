@@ -65,4 +65,9 @@ const YZListItem: FC<IProps> = ({className,onClick, detail, title,
     );
 }
 
+YZListItem.defaultProps = {
+    //默认支持多行
+    extraMultiline: true
+};
+
 export default React.memo(YZListItem);
