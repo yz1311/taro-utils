@@ -7,19 +7,29 @@ taro3的一些工具函数，主要针对从react native迁移到taro3的用户
 
 ## 工具
 
-#### FormData
+### FormData
 
 小程序是默认不支持FormData对象的，单独由一个url来上传文件，通过这个拓展，可以直接从api接口上传文件
+```javascript
+import {FormData} from '@yz1311/taro-utils';
+...
+let formData = new FormData();
+//uri是chooseImage返回的文件path属性
+formData.appendFile('file', uri);
+let formDataObj = formData.getData();
 
-#### useCommonShare
+将`formDataObj.buffer`对象作为body传入即可
+```
+
+### useCommonShare
 
 通用的分享hooks
 
-#### useNavInfo
+### useNavInfo
 
 获取导航信息的hooks
 
-#### useMounted
+### useMounted
 
 延迟加载组件的hooks
 
@@ -27,19 +37,19 @@ taro3的一些工具函数，主要针对从react native迁移到taro3的用户
 譬如使用AtModal组件的时候,AtModal一般写在页面的最上层，刚进入页面的时候也会
 随着页面加载，影响性能，所以需要延迟加载，但是每个页面都写setTimeout很繁琐，所以有了这个hooks`
 
-#### Alert
+### Alert
 
 类RN的Alert组件，封装`Taro.showModal`
 
-#### CommonUtils
+### CommonUtils
 
 常用方法封装
 
-#### DeviceEventEmitter
+### DeviceEventEmitter
 
 全局事件接收和发送方法，类RN api，封装`Taro.eventCenter`
 
-#### InteractionManager
+### InteractionManager
 
 类RN api,实际只是延迟150ms，仅为方便RN代码迁移到taro3
 ```javascript
@@ -48,7 +58,7 @@ InteractionManager.runAfterInteractions(()=>{
         });
 ```
 
-#### NavigationHelper
+### NavigationHelper
 导航帮助组件
 
 提供了类似react-navigation的方法和一些自定义方法
@@ -67,23 +77,23 @@ InteractionManager.runAfterInteractions(()=>{
 * `popN：`弹出N个页面
 * `replace：`用新的页面替换当前页面(注意不支持tab页面)
 
-#### StorageUtils
+### StorageUtils
 
 存储工具类，提供了`save`、`load`、`remove`三个方法
 
-#### ToastUtils
+### ToastUtils
 
 toast和loading工具类，针对小程序中toast和loading的一些兼容性进行了封装
 
 ## 样式
 
-#### 自定义样式
+### 自定义样式
 主要是针对taro-ui中一些不合理的地方进行了覆盖修改
 ```
 import '@yz1311/taro-utils/lib/style/index.scss';
 ```
 
-#### tachyons
+### tachyons
 tachyons是一个css库，推荐引入，可以少写很多css代码
 ```
 import '@yz1311/taro-utils/lib/style/tachyons.min.css';
@@ -93,7 +103,7 @@ import '@yz1311/taro-utils/lib/style/tachyons.min.css';
 
 ## 组件
 
-#### YZButton
+### YZButton
 
 简单封装的Button组件
 
@@ -101,40 +111,40 @@ taro 3.0.14(至少是这个版本中存在这个问题)
 
 Button组件在ios存在不占位的情况，并且有很大的阴影区域
 
-#### YZFloatLayout
+### YZFloatLayout
 
-#### YZHeader
+### YZHeader
 在`AtNavBar`基础上封装了两点
 * 封装状态栏(状态栏和导航栏在YZHeader是一体的了)
 * 隐藏返回按钮的时候，去掉按压效果
 * title支持组件，并且扩大点击范围，方便对title自定义
 
-#### YZLIstItem
+### YZLIstItem
 
 * desc默认支持多行
 * 添加`required`属性
 
-#### YZListView
+### YZListView
 
 列表组件
 
-#### YZLoadingFooter
+### YZLoadingFooter
 
 
-#### YZRadio
+### YZRadio
 
 官方的列表是采用全列表渲染的，如果数据量较多，很影响渲染
 
 现在改为VirtualList实现，性能极大优化
 
 
-#### YZTabs
+### YZTabs
 
 目前官方的YZTabs中存在部分问题，内容区必须设置高度，无法利用flex充满屏幕
 
 利用Swiper组件重新实现了该组件的大部分功能
 
 
-#### YZTextarea
+### YZTextarea
 
 由于众所周知的原生组件问题，使用Textarea组件会导致无法隐藏，目前该组件使用一个样式一样的占位组件替代，可以解决这个问题
