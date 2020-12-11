@@ -3,6 +3,24 @@
   flex-direction: column;
   flex: 1;
 
+  .at-tabs {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: hidden;
+    max-height: 90px;
+  }
+
+  .at-tabs__body {
+    //flex: 1 !important;
+    //hidden会导致其他tab不显示，所以目前只能设置内容高度
+    //overflow-y: hidden;
+  }
+
+  .at-tabs-pane {
+    //减掉tabbar的高度
+    height: 0 !important;
+  }
+
 
   .relative {
     position: relative;

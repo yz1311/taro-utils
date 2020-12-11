@@ -1,4 +1,6 @@
 .yz-header-container {
+  display: flex;
+  flex-direction: column;
   position: relative;
   .at-nav-bar__title {
     align-self: stretch !important;

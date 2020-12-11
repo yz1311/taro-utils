@@ -28,7 +28,7 @@ export default class YZLoadingFooter extends PureComponent<IProps, IState> {
         if (isLoadingMore) {
             return (
                 <View className='loading-footer-container' style={`${customStyle}`}>
-                    <View className='flex flex-row items-center' >
+                    <View style="display: flex; flex-direction: row; align-items: center;" >
                         <AtActivityIndicator size={35}></AtActivityIndicator>
                         <Text className='loading-text'>加载中...</Text>
                     </View>

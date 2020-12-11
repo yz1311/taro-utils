@@ -17,7 +17,7 @@ const statusBarHeight = Taro.getSystemInfoSync().statusBarHeight;
 
 const YZHeader: FC<IProps> = ({className, title, leftIconType, ...rest})=>{
     return (
-        <View className={`flex-column yz-header-container ${className}`}>
+        <View className={`yz-header-container ${className}`}>
             <View style={`background-color: transparent; height: ${statusBarHeight}px;`} />
             <View className={`${leftIconType?'yz-header-content-container':'yz-header-content-container__inactive'}`}>
                 <AtNavBar

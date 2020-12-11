@@ -84,6 +84,7 @@ $float-layout-timer: 300ms;
 
     &-body {
       font-size: $font-size-base;
+      //去掉AtFloatingLayout自带的padding
       padding: 0 !important;
       max-height: 828px;
       min-height: 514px;
