@@ -85,6 +85,17 @@ InteractionManager.runAfterInteractions(()=>{
 
 toast和loading工具类，针对小程序中toast和loading的一些兼容性进行了封装
 
+### Clipboard
+
+### Dimensions
+
+### Keyboard
+
+### Platform
+
+### useWindowDimensions
+
+
 ## 样式
 
 ### 自定义样式

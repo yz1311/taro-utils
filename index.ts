@@ -6,9 +6,14 @@ import NavigationHelper from './lib/utils/navigationHelper';
 import StorageUtils from './lib/utils/storageUtils';
 import ToastUtils from './lib/utils/toastUtils';
 import FormData from "./lib/utils/formData";
+import Clipboard from "./lib/utils/clipboard";
+import Keyboard from "./lib/utils/keyboard";
+import Platform from "./lib/utils/platform";
+import Dimensions from "./lib/utils/dimensions";
 import useNavInfo from "./lib/utils/hooks/useNavInfo";
 import useCommonShare from "./lib/utils/hooks/useCommonShare";
 import useMounted, {MountedDelays} from "./lib/utils/hooks/useMounted";
+import useWindowDimensions from "./lib/utils/hooks/useWindowDimensions";
 
 
 import YZButton from "./lib/components/YZButton";
@@ -26,7 +31,12 @@ export {
     useCommonShare,
     useMounted,
     MountedDelays,
+    useWindowDimensions,
     FormData,
+    Clipboard,
+    Keyboard,
+    Platform,
+    Dimensions,
     Alert,
     CommonUtils,
     DeviceEventEmitter,
