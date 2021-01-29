@@ -1,6 +1,6 @@
 {
   "name": "@yz1311/taro-utils",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "description": "taro3工具库",
   "main": "index.js",
   "types": "types/index.d.ts",
@@ -34,14 +34,16 @@
     "@tarojs/components": "^3.0.11",
     "@tarojs/taro": "^3.0.11",
     "react": "^16.10.0",
-    "taro-ui": "3.0.0-alpha.3",
+    "taro-ui": "3.0.0-alpha.9",
     "typescript": "^3.5.2",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "@yz1311/taro-state-view": "^0.0.24"
   },
   "peerDependencies": {
     "@tarojs/taro": "^3.0.0",
     "react": "^16.10.0",
-    "taro-ui": "3.0.0-alpha.3",
-    "classnames": "^2.2.6"
+    "taro-ui": "3.0.0-alpha.9",
+    "classnames": "^2.2.6",
+    "@yz1311/taro-state-view": "^0.0.24"
   }
 }

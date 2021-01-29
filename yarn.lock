@@ -93,6 +93,11 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@yz1311/taro-state-view@^0.0.24":
+  version "0.0.24"
+  resolved "https://registry.npm.taobao.org/@yz1311/taro-state-view/download/@yz1311/taro-state-view-0.0.24.tgz#efad767966ba78d802b0e053abcac7c19746cb2f"
+  integrity sha1-7612eWa6eNgCsOBTq8rHwZdGyy8=
+
 babel-runtime@^6.0.0, babel-runtime@^6.23.0:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
@@ -281,10 +286,10 @@ swiper@4.4.2:
     dom7 "^2.1.2"
     ssr-window "^1.0.1"
 
-taro-ui@3.0.0-alpha.3:
-  version "3.0.0-alpha.3"
-  resolved "https://registry.npmjs.org/taro-ui/-/taro-ui-3.0.0-alpha.3.tgz#7ce26d71a47f7fbeed4aca6237696284787d3023"
-  integrity sha512-qLVP2/6zh01CbZFZUj2QuhbwtnOd7l1PSzd1Rjl1be1vyq819rFeHA1lApxYLXiw1zpM5v/Ywp7euB88LpQagg==
+taro-ui@3.0.0-alpha.9:
+  version "3.0.0-alpha.9"
+  resolved "https://registry.npm.taobao.org/taro-ui/download/taro-ui-3.0.0-alpha.9.tgz?cache=0&sync_timestamp=1610005490567&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftaro-ui%2Fdownload%2Ftaro-ui-3.0.0-alpha.9.tgz#3cdbbfe803c766310cef34d454822134c4b07c1f"
+  integrity sha1-PNu/6APHZjEM7zTUVIIhNMSwfB8=
   dependencies:
     classnames "^2.2.6"
     dayjs "^1.7.7"
