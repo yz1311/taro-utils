@@ -209,7 +209,7 @@ export default class YZFlatList extends PureComponent<IProps, IState> {
                                 if(this.isLoadingMore) {
                                     return;
                                 }
-                                this.onRefresh&&this.onRefresh();
+                                this.onPullRefresh&&this.onPullRefresh();
                             }}
                             onRefresherPulling={()=>{
 

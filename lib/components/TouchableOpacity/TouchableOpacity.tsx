@@ -12,13 +12,14 @@ interface IProps {
      */
     activeOpacity?: number;
     style?: string;
+    disabled?: boolean;
 }
 
-const TouchableOpacity:FC<IProps> = ({children, className, style, onPress})=>{
+const TouchableOpacity:FC<IProps> = ({children, className, style, disabled, onPress})=>{
     return (
         <View
             className={`touchable-opacity ${className}`}
-            onClick={onPress}
+            onClick={!disabled&&onPress}
             style={`${style}`}
         >
             {children}
