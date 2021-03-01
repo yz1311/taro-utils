@@ -29,6 +29,10 @@ export default class ToastUtils {
     static isLoadingShowing = false;
 
     static showToast (title: string) {
+        //为空的时候，不进行任何操作，title为undefined会报错
+        if(title == undefined || title == '') {
+            return;
+        }
         ToastUtils.isToastShowing = true;
         Taro.showToast({
             title: title,
@@ -41,6 +45,10 @@ export default class ToastUtils {
     }
 
     static showSuccessToast (title: string) {
+        //为空的时候，不进行任何操作，title为undefined会报错
+        if(title == undefined || title == '') {
+            return;
+        }
         ToastUtils.isToastShowing = true;
         Taro.showToast({
             title: title,
