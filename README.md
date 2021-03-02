@@ -21,6 +21,17 @@ let formDataObj = formData.getData();
 将`formDataObj.buffer`对象作为body传入即可
 ```
 
+<font color="red">注意:</font> 在目前的开发者工具(截止到2021-03-02)中，会出现无法上传文件的问题，
+因为官方的这个bug 
+https://developers.weixin.qq.com/community/develop/doc/00068e2cc040a00f6a8b7e8b15bc00?highLine=arraybuffer
+，真机不影响。暂时解决办法是进入库的`node_modules/@yz1311/taro-utils/lib/utils/formData/index.js`,注意是js文件,注销掉
+```javascript
+//    if (!(buffer instanceof ArrayBuffer)) {
+//       return false;
+//    }
+```
+
+
 ### useCommonShare
 
 通用的分享hooks
@@ -135,9 +146,15 @@ Button组件在ios存在不占位的情况，并且有很大的阴影区域
 * desc默认支持多行
 * 添加`required`属性
 
-### YZListView
+### YZFlatList
 
 列表组件
+
+<font color="red">注意:</font> 在目前的开发者工具(截止到2021-03-02)中，会出现下拉刷新的区域是整个列表的高度的问题,
+导致三个点一直在列表的底部(list-item不设置背景色可以观察到)，也导致设置refresher-background相当于设置整个列表的背景色
+因为官方的这个bug 
+https://developers.weixin.qq.com/community/develop/doc/0000c4e49f43602a050b9748251000?highLine=scroll-view%2520refresher-background%2520%25E9%25AB%2598%25E5%25BA%25A6
+，真机不影响
 
 ### YZLoadingFooter
 

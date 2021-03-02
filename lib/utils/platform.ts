@@ -15,6 +15,32 @@ const Platform = {
             return system;
         }
     })(),
+    /**
+     * 操作系统版本号
+     * 注意:RN中获取的是一个数字，ios获取的类似"10.3"
+     */
+    Version: (()=>{
+        //iOS 10.0.1
+        return Taro.getSystemInfoSync().version?.split(' ')[1]?.trim();
+    })(),
+    /**
+     * 暂未实现
+     */
+    isPad: (()=>{
+        console.warn('暂未实现Platform.isPad');
+    })(),
+    /**
+     * 暂未实现
+     */
+    isTVOS: (()=>{
+        console.warn('暂未实现Platform.isTVOS');
+    })(),
+    /**
+     * 暂未实现
+     */
+    isTV: (()=>{
+        console.warn('暂未实现Platform.isTV');
+    })(),
 };
 
 
