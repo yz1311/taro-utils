@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro';
+import {EmitterSubscription} from "../../types";
 
 
 const DeviceEventEmitter =  {
@@ -9,7 +10,7 @@ const DeviceEventEmitter =  {
             remove: () => {
                 Taro.eventCenter.off('eventName');
             }
-        };
+        } as EmitterSubscription;
     },
     emit: (eventName: string, params?: any) => {
         Taro.eventCenter.trigger(eventName, params);

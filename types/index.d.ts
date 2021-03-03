@@ -26,6 +26,7 @@ import YZTextarea from "../lib/components/YZTextarea";
 import YZHeader from "../lib/components/YZHeader";
 import YZFloatLayout from "../lib/components/YZFloatLayout";
 import YZRadio from "../lib/components/YZRadio";
+import exp from "constants";
 
 // Used by Dimensions below
 export interface ScaledSize {
@@ -33,6 +34,11 @@ export interface ScaledSize {
     height: number;
     scale: number;
     fontScale: number;
+}
+
+export interface EmitterSubscription {
+    eventType: string;
+    remove: ()=>void;
 }
 
 export {
