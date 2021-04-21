@@ -1,1 +1,11 @@
 @import './patch/index.scss';
+@import "./tachyons.min.css";
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}

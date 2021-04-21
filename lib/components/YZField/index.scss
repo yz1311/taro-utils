@@ -1,0 +1,16 @@
+
+.yz-field {
+  transition: background-color 0s;
+  &:active {
+    background-color: transparent !important;
+  }
+  .right-container {
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    .input {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
