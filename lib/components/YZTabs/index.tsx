@@ -7,7 +7,8 @@
  * 2020/12/10 用Swiper实现了滑动功能
  */
 import {CommonEvent, Swiper, SwiperItem, View} from "@tarojs/components";
-import React, {useEffect, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
+import Taro from '@tarojs/taro';
 import {AtTabs} from 'taro-ui';
 import {TabItem} from "taro-ui/types/tabs";
 import './index.scss';
@@ -38,10 +39,15 @@ interface IProps {
      * 无论是否设置，都不支持手势滑动切换内容页
      */
     swipeable: boolean;
+    /**
+     * 默认加载的页面，default = 0
+     */
+    prerenderingSiblingsNumber?: number;
 }
 
-function YZTabs({children, current, tabList, animated, onClick, swipeable}:IProps) {
+const YZTabs:FC<IProps> = ({children, current, tabList, animated, onClick, swipeable, prerenderingSiblingsNumber}) => {
     const [tempKey, setTempKey] = useState(new Date().getTime+'');
+    const [cachedSet, setCachedSet] = useState(new Set(Array.from({length: prerenderingSiblingsNumber+1}, (x,index)=>index)));
 
     useEffect(()=>{
         //由于AtTabs刷新tabList后，会出现无法点击切换tab的情况，所以需要强制刷新整个AtTabs
@@ -66,6 +72,9 @@ function YZTabs({children, current, tabList, animated, onClick, swipeable}:IProp
                         current={current}
                         disableTouch={true}
                         onChange={e => {
+                            Taro.nextTick(()=>{
+                                setCachedSet(new Set([...cachedSet, e.detail.current]));
+                            });
                             onClick && onClick(e.detail.current, e);
                         }}
                         className='flex-grow-1 overflow-y-hidden'
@@ -74,7 +83,7 @@ function YZTabs({children, current, tabList, animated, onClick, swipeable}:IProp
                             children.map((item, index) => {
                                 return (
                                     <SwiperItem key={index}>
-                                        {item}
+                                        {cachedSet.has(index) ? item : null}
                                     </SwiperItem>
                                 );
                             })
@@ -99,7 +108,8 @@ function YZTabs({children, current, tabList, animated, onClick, swipeable}:IProp
 YZTabs.defaultProps = {
     current: 0,
     animated: true,
-    swipeable: true
+    swipeable: true,
+    prerenderingSiblingsNumber: 0
 };
 
 export default React.memo(YZTabs);
