@@ -38,7 +38,7 @@ interface IProps {
      * 当 tabDirection='vertical'时，
      * 无论是否设置，都不支持手势滑动切换内容页
      */
-    swipeable: boolean;
+    swipeable?: boolean;
     /**
      * 默认加载的页面，default = 0
      */
