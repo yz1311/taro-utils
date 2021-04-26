@@ -21,7 +21,7 @@ let formDataObj = formData.getData();
 将`formDataObj.buffer`对象作为body传入即可
 ```
 
-<font color="red">注意:</font> 在目前的开发者工具(截止到2021-03-02)中，会出现无法上传文件的问题，
+<font color="red">注意:</font> 在目前的开发者工具(截止到2021-04-23)中，会出现无法上传文件的问题，
 因为官方的这个bug 
 https://developers.weixin.qq.com/community/develop/doc/00068e2cc040a00f6a8b7e8b15bc00?highLine=arraybuffer
 ，真机不影响。暂时解决办法是进入库的`node_modules/@yz1311/taro-utils/lib/utils/formData/index.js`,注意是js文件,注销掉

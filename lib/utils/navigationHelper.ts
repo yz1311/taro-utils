@@ -5,7 +5,13 @@ const generateParams = (params) => {
   if (typeof params === 'object') {
     for (const key in params) {
       if (typeof params[key] === 'object') {
-        paramArray.push(key + '=' + JSON.stringify(params[key]));
+        //Map对象需要特殊处理
+        if(params[key] instanceof Map) {
+          //@ts-ignore
+          paramArray.push(key + '=' + JSON.stringify(Object.fromEntries(params[key])));
+        } else {
+          paramArray.push(key + '=' + JSON.stringify(params[key]));
+        }
       } else {
         paramArray.push(key + '=' + params[key]);
       }
