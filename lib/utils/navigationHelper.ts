@@ -4,7 +4,8 @@ const generateParams = (params) => {
   const paramArray: string[] = [];
   if (typeof params === 'object') {
     for (const key in params) {
-      if (typeof params[key] === 'object') {
+      //对象且不为null
+      if (typeof params[key] === 'object' && params[key]) {
         //Map对象需要特殊处理
         if(params[key] instanceof Map) {
           //@ts-ignore
@@ -13,7 +14,12 @@ const generateParams = (params) => {
           paramArray.push(key + '=' + JSON.stringify(params[key]));
         }
       } else {
-        paramArray.push(key + '=' + params[key]);
+        //针对于null、undefined，直接传递空的就行，否则会被转换成null、undefined字符串
+        if(params[key] == undefined) {
+          paramArray.push(key + '=');
+        } else {
+          paramArray.push(key + '='+ params[key]);
+        }
       }
     }
   }

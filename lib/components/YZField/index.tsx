@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import {Image, Text, View, Input} from "@tarojs/components";
 import './index.scss';
-import {ITouchEvent} from "@tarojs/components/types/common";
+import {InputProps} from "@tarojs/components/types/Input";
 
 
 interface IProps {
@@ -16,11 +16,12 @@ interface IProps {
     value: string;
     onChangeText: (text: string)=>void;
     placeholder?: string;
+    inputProps?: Partial<InputProps>;
 }
 
 const YZListItem: FC<IProps> = ({className, title,
                                     thumb, extraMultiline,
-                                    value, onChangeText, placeholder,
+                                    value, onChangeText, placeholder, inputProps,
                                     note, required, arrow, hasBorder = true})=>{
     return (
         <View className={`yz-field at-list__item ${!arrow&&'at-list__item_patch'} ${!hasBorder&&'at-list__item--no-border'} ${className}`}>
@@ -49,6 +50,7 @@ const YZListItem: FC<IProps> = ({className, title,
                             onChangeText && onChangeText(e.detail.value);
                             return e.detail.value;
                         }}
+                        {...(inputProps||{})}
                     />
                 </View>
             </View>
