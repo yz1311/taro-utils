@@ -41,7 +41,7 @@ const YZListItem: FC<IProps> = ({className, title,
                         {note && <View className='item-content__info-note'>{note}</View>}
                     </View>
                 </View>
-                <View className="right-container">
+                <View className="field-right-container">
                     <Input
                         className="input"
                         value={value}
