@@ -3,6 +3,9 @@
   width: 100%;
 
   &__option {
+    //Virtual-list会在每个item的外层套一个absolute的布局，
+    // 所以必须设置高度为100%，否则会导致界面错乱
+    height: 100%;
     &-wrap {
       height: 100%;
       //width: 100%;
