@@ -27,6 +27,7 @@ import YZHeader from "./lib/components/YZHeader";
 import YZFloatLayout from "./lib/components/YZFloatLayout";
 import YZRadio from "./lib/components/YZRadio";
 import YZField from "./lib/components/YZField";
+import TouchableOpacity from "./lib/components/TouchableOpacity/TouchableOpacity";
 
 export {
     useNavInfo,
@@ -57,5 +58,6 @@ export {
     YZHeader,
     YZFloatLayout,
     YZRadio,
-    YZField
+    YZField,
+    TouchableOpacity
 }
