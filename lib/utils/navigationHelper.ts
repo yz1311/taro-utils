@@ -33,20 +33,45 @@ const generateParams = (params) => {
 export default class NavigationHelper {
   static navigation;
 
-  static navRouters: Array<any>;
+  static navRouters: Array<Taro.Page>;
+
+  static CANTOUCH = true;
+
+  //延迟的时间
+  static delay = 0.8;
+
+  static canTouch() {
+    if(this.CANTOUCH) {
+      this.CANTOUCH = false;
+      setTimeout(() => {
+        this.CANTOUCH = true;
+      }, this.delay*1000);
+      return true;
+    }
+    return false;
+  }
 
   /**
    * 当前是不是最顶层的页面
    * @param routePath  路径
    * @returns {boolean}
    */
-  static isTopScreen (routePath) {
+  static isTopScreen (routeName) {
     let pages = Taro.getCurrentPages();
     //处理下routePath，如果是/开头的，则去掉
-    if(routePath&&routePath[0]=='/') {
-      routePath = routePath.substr(1);
+    if(routeName&&routeName[0]=='/') {
+      routeName = routeName.substr(1);
     }
-    return pages[pages.length-1].route == routePath;
+    return pages[pages.length-1].route == routeName;
+  }
+
+  static isTopScreenByName(routeName: string) {
+    let pages = Taro.getCurrentPages();
+    //处理下routePath，如果是/开头的，则去掉
+    if(routeName&&routeName[0]=='/') {
+      routeName = routeName.substr(1);
+    }
+    return pages[pages.length-1].route == routeName;
   }
 
   static goBack () {
@@ -56,6 +81,9 @@ export default class NavigationHelper {
   }
 
   static navigate (routeName, params?) {
+    if(!this.canTouch()) {
+      return;
+    }
     const ext = generateParams(params);
     console.log(routeName + ext);
     Taro.navigateTo({
@@ -73,6 +101,9 @@ export default class NavigationHelper {
    * @param params
    */
   static resetTo (routeName, params?) {
+    if(!this.canTouch()) {
+      return;
+    }
     const ext = generateParams(params);
     Taro.redirectTo({
       url: routeName + ext
@@ -85,6 +116,9 @@ export default class NavigationHelper {
    * @param params
    */
   static switchTab (routeName, params?) {
+    if(!this.canTouch()) {
+      return;
+    }
     const ext = generateParams(params);
     Taro.switchTab({
       url: routeName + ext
@@ -92,6 +126,9 @@ export default class NavigationHelper {
   }
 
   static popN (num) {
+    if(!this.canTouch()) {
+      return;
+    }
     Taro.navigateBack({
       delta: num
     });
@@ -107,6 +144,35 @@ export default class NavigationHelper {
     Taro.redirectTo({
       url: routeName + ext
     });
+  }
+
+  static popToTop() {
+    if(!this.canTouch()) {
+      return;
+    }
+    var numToPop = this.navRouters.length - 1;
+    this.popN(numToPop);
+  }
+
+  static popToIndex(indexOfRoute: number) {
+    if(!this.canTouch()) {
+      return;
+    }
+    var numToPop = this.navRouters.length - 1 - indexOfRoute;
+    this.popN(numToPop);
+  }
+
+  static popToRoute(routeName: string) {
+    if(!this.canTouch()) {
+      return;
+    }
+    let index = this.navRouters.map(x => x.name).indexOf(routeName);
+    if (index >= 0) {
+      let length = this.navRouters.length - index + 1;
+      this.popN(length);
+    } else {
+      console.info("找不到路由");
+    }
   }
 
   /**

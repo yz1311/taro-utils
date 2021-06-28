@@ -1,6 +1,6 @@
 {
   "name": "@yz1311/taro-utils",
-  "version": "0.0.50",
+  "version": "0.0.51",
   "description": "taro3工具库",
   "main": "index.js",
   "types": "types/index.d.ts",

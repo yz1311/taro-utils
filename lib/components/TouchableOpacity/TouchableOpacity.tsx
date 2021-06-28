@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {CSSProperties, FC} from "react";
 import {View} from "@tarojs/components";
 import {ITouchEvent} from "@tarojs/components/types/common";
 import './TouchableOpacity.scss';
@@ -11,7 +11,7 @@ interface IProps {
      * 暂未实现
      */
     activeOpacity?: number;
-    style?: string;
+    style?: string | CSSProperties;
     disabled?: boolean;
 }
 
@@ -20,7 +20,7 @@ const TouchableOpacity:FC<IProps> = ({children, className, style, disabled, onPr
         <View
             className={`touchable-opacity ${className}`}
             onClick={!disabled&&onPress}
-            style={`${style}`}
+            style={style}
         >
             {children}
         </View>

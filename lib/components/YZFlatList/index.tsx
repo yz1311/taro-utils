@@ -2,7 +2,7 @@
  * 初始加载或者下拉加载的时候显示refreshing
  * 上拉加载更多不显示
  */
-import React, {Component, PureComponent, ReactElement} from 'react';
+import React, {Component, CSSProperties, PureComponent, ReactElement} from 'react';
 import {
     createPagingResult,
     createReducerResult,
@@ -19,11 +19,11 @@ import TouchableOpacity from "../TouchableOpacity/TouchableOpacity";
 
 export type IProps =  {
     wrapperClassName?: string,
-    wrapperStyle?: string,
+    wrapperStyle?: string | CSSProperties,
     listClassName?: string,
-    listStyle?: string,
+    listStyle?: string | CSSProperties,
     contentClassName?: string,
-    contentStyle?: string,
+    contentStyle?: string | CSSProperties,
     data?: ReadonlyArray<any>;
     /**
      * Takes an item from data and renders it into the list. Typical usage:
@@ -51,8 +51,8 @@ export type IProps =  {
     loadData: (pageIndex: number, pageSize?: number) => Promise<Array<any> | Error>,
     clearData?: any,
     onPageIndexChange?: any,
-    footerContainerStyle?: any,
-    footerTextStyle?: any,
+    footerContainerStyle?: any | CSSProperties,
+    footerTextStyle?: any | CSSProperties,
     refreshEnable: boolean;
     /**
      * 下拉刷新(refreshEnable为false时无效)

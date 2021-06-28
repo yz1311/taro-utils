@@ -10,6 +10,8 @@ import Clipboard from "./lib/utils/clipboard";
 import Keyboard from "./lib/utils/keyboard";
 import Platform from "./lib/utils/platform";
 import Dimensions from "./lib/utils/dimensions";
+import PixelRatio from "./lib/utils/pixelRatio";
+import Theme from './lib/themes/Theme';
 import useNavInfo from "./lib/utils/hooks/useNavInfo";
 import useCommonShare from "./lib/utils/hooks/useCommonShare";
 import useMounted, {MountedDelays} from "./lib/utils/hooks/useMounted";
@@ -41,6 +43,8 @@ export {
     Keyboard,
     Platform,
     Dimensions,
+    PixelRatio,
+    Theme,
     Alert,
     CommonUtils,
     DeviceEventEmitter,
