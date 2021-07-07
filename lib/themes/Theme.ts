@@ -95,15 +95,8 @@ const Theme = {
     },
 
     get statusBarHeight() {
-        if (Platform.OS === 'ios') {
-            if (this.isIPhoneX) return this.isLandscape ? 0 : (this.fitIPhoneX ? 44 : 20);
-            if (this.isPad) return 20;
-        } else if (Platform.OS === 'android') {
-            let systemInfo = Taro.getSystemInfoSync();
-            if (parseInt(Platform.Version) > 20) return systemInfo.statusBarHeight; //translucent StatusBar is required
-            return 0;
-        }
-        return this.isLandscape ? 0 : 20;
+        let systemInfo = Taro.getSystemInfoSync();
+        return this.isLandscape ? 0 : systemInfo.statusBarHeight;
     },
 
     get screenInset() {

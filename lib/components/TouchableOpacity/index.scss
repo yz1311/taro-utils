@@ -1,0 +1,9 @@
+
+.touchable-opacity {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+  &:active {
+    opacity: 0.7;
+  }
+}

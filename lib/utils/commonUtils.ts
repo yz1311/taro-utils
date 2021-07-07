@@ -1,7 +1,15 @@
 import ToastUtils from "./toastUtils";
 import Taro from '@tarojs/taro';
+import {CSSProperties} from "react";
 
 const CommonUtils = {
+    combineStyle: (style: CSSProperties | Array<CSSProperties>) => {
+        let combinedStyle = style as CSSProperties;
+        if(Array.isArray(style)) {
+            combinedStyle = Object.assign({}, ...style);
+        }
+        return combinedStyle;
+    },
     guid: () => {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16 | 0,

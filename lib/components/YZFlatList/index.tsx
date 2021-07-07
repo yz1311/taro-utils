@@ -12,18 +12,22 @@ import {
     ReducerResult
 } from "@yz1311/taro-state-view";
 import InteractionManager from "../../utils/interactionManager";
-import { View, ScrollView, Text  } from '@tarojs/components';
+import View from '../View';
+import Text from '../Text';
+import ScrollView from '../ScrollView';
 import {AtActivityIndicator as ActivityIndicator} from 'taro-ui';
 import './index.scss';
-import TouchableOpacity from "../TouchableOpacity/TouchableOpacity";
+import TouchableOpacity from "../TouchableOpacity";
+import CommonUtils from "../../utils/commonUtils";
 
 export type IProps =  {
     wrapperClassName?: string,
-    wrapperStyle?: string | CSSProperties,
+    style?: CSSProperties | Array<CSSProperties>,
+    wrapperStyle?: CSSProperties | Array<CSSProperties>,
     listClassName?: string,
-    listStyle?: string | CSSProperties,
+    listStyle?: CSSProperties | Array<CSSProperties>,
     contentClassName?: string,
-    contentStyle?: string | CSSProperties,
+    contentContainerStyle?: CSSProperties | Array<CSSProperties>,
     data?: ReadonlyArray<any>;
     /**
      * Takes an item from data and renders it into the list. Typical usage:
@@ -51,8 +55,8 @@ export type IProps =  {
     loadData: (pageIndex: number, pageSize?: number) => Promise<Array<any> | Error>,
     clearData?: any,
     onPageIndexChange?: any,
-    footerContainerStyle?: any | CSSProperties,
-    footerTextStyle?: any | CSSProperties,
+    footerContainerStyle?: CSSProperties | Array<CSSProperties>,
+    footerTextStyle?: CSSProperties | Array<CSSProperties>,
     refreshEnable: boolean;
     /**
      * 下拉刷新(refreshEnable为false时无效)
@@ -60,6 +64,8 @@ export type IProps =  {
     onPullRefresh?: () => void;
     onPagingResultChange?: (result: PagingResult<any>) => void;
     ListHeaderComponent?: Function | ReactElement | Component,
+    ListFooterComponent?: Function | ReactElement | Component,
+    ItemSeparatorComponent?:  Function | ReactElement | Component,
     /**
      * 挂载列表的时候，自动加载数据,默认:true
      */
@@ -69,7 +75,8 @@ export type IProps =  {
      * pull下拉刷新，跟手动下拉刷新的效果一致(refreshEnable为false时无效)
      * mute隐藏，只调用接口
      */
-    autoloadType: 'pull' | 'mute'
+    autoloadType: 'pull' | 'mute',
+    keyExtractor?: (item: any, index: number) => string;
 };
 
 export interface IState {
@@ -191,11 +198,11 @@ export default class YZFlatList extends PureComponent<IProps, IState> {
 
     render() {
         const {pagingResult: {dataList, noMore}, refresherEnabled} = this.state;
-        const {ListHeaderComponent, wrapperClassName, wrapperStyle,
-            listClassName, listStyle, renderItem,
-            contentClassName, contentStyle} = this.props;
+        const {ListHeaderComponent, wrapperClassName, wrapperStyle, style,
+            listClassName, listStyle, renderItem, ItemSeparatorComponent,
+            contentClassName, contentContainerStyle} = this.props;
         return (
-            <View className={`yz-list-view ${wrapperClassName}`} style={wrapperStyle}>
+            <View className={`yz-list-view ${wrapperClassName}`} style={[CommonUtils.combineStyle(style), CommonUtils.combineStyle(wrapperStyle)]}>
                 <ScrollView className={`list-scroll-view ${listClassName}`}
                             style={listStyle}
                             onScroll={this._onScroll}
@@ -217,7 +224,7 @@ export default class YZFlatList extends PureComponent<IProps, IState> {
                             scrollY={true}
                             onScrollToLower={this._onEndReach}
                 >
-                    <View className={`yz-list-view__content ${contentClassName}`} style={contentStyle} >
+                    <View className={`yz-list-view__content ${contentClassName}`} style={contentContainerStyle} >
                         {typeof ListHeaderComponent == 'function' ?
                             ListHeaderComponent()
                             :
@@ -225,10 +232,23 @@ export default class YZFlatList extends PureComponent<IProps, IState> {
                         }
                         {
                             dataList.map((item,index)=>{
-                                return renderItem&&renderItem({
-                                    item,
-                                    index
-                                });
+                                return (
+                                    <React.Fragment key={this._keyExtractor(item, index)}>
+                                        {renderItem&&renderItem({
+                                            item,
+                                            index
+                                        })}
+                                        {
+                                            index != dataList.length-1 ?
+                                                typeof ItemSeparatorComponent == 'function' ?
+                                                    ItemSeparatorComponent()
+                                                    :
+                                                    ItemSeparatorComponent
+                                                :
+                                                null
+                                        }
+                                    </React.Fragment>
+                                );
                             })
                         }
                         {this._renderFooter()}
@@ -239,11 +259,32 @@ export default class YZFlatList extends PureComponent<IProps, IState> {
     }
 
     _keyExtractor = (item, index) => {
-        return index + '';
+        //key是根据keyExtractor获取而来
+        let tempKeyExtractor = null as any;
+        if(this.props.keyExtractor) {
+            tempKeyExtractor = this.props.keyExtractor
+        } else {
+            if(item.hasOwnProperty('key')) {
+                tempKeyExtractor = (item, index)=>item['key']+'';
+            } else  if(item.hasOwnProperty('id')) {
+                tempKeyExtractor = (item, index)=>item['id']+'';
+            } else {
+                tempKeyExtractor = (item, index)=>index+'';
+            }
+        }
+        return tempKeyExtractor(item, index);
     }
 
     _renderFooter = () => {
-        const {footerContainerStyle, footerTextStyle} = this.props;
+        const {ListFooterComponent, footerContainerStyle, footerTextStyle} = this.props;
+        if(ListFooterComponent) {
+            return (
+                typeof ListFooterComponent == 'function' ?
+                    ListFooterComponent()
+                    :
+                    ListFooterComponent
+            );
+        }
         const {pagingResult: {loadDataResult, noMore}} = this.state;
         let promptTitle = noMore ? '没有更多内容了' : '加载中...';
         let textColor = '#666';
@@ -265,11 +306,11 @@ export default class YZFlatList extends PureComponent<IProps, IState> {
                 style={footerContainerStyle}>
                 {noMore || isNotFirstLoadError ? null :
                     <ActivityIndicator className="indicator" color={'#666666'} />}
-                    <Text style={`
-                        text-align: center;
-                        color: ${textColor};
-                        fontSize: ${isNotFirstLoadError ? 15 : 13}px;
-                        ${footerTextStyle}`}>{promptTitle}</Text>
+                    <Text style={{
+                        textAlign: 'center',
+                        color: textColor,
+                        fontSize: (isNotFirstLoadError ? 15 : 13) + 'px',
+                        ...footerTextStyle}}>{promptTitle}</Text>
             </TouchableOpacity>
         );
     }

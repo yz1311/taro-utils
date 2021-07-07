@@ -17,7 +17,7 @@ import useCommonShare from "./lib/utils/hooks/useCommonShare";
 import useMounted, {MountedDelays} from "./lib/utils/hooks/useMounted";
 import useWindowDimensions from "./lib/utils/hooks/useWindowDimensions";
 import useFlatListRef from "./lib/utils/hooks/useFlatListRef";
-
+import StyleSheet from "./lib/utils/styleSheet";
 
 import YZButton from "./lib/components/YZButton";
 import YZListItem from "./lib/components/YZListItem";
@@ -29,7 +29,11 @@ import YZHeader from "./lib/components/YZHeader";
 import YZFloatLayout from "./lib/components/YZFloatLayout";
 import YZRadio from "./lib/components/YZRadio";
 import YZField from "./lib/components/YZField";
-import TouchableOpacity from "./lib/components/TouchableOpacity/TouchableOpacity";
+import TouchableOpacity from "./lib/components/TouchableOpacity";
+import Image from "./lib/components/Image";
+import Text from "./lib/components/Text";
+import View from "./lib/components/View";
+import ScrollView from "./lib/components/ScrollView";
 
 export {
     useNavInfo,
@@ -52,6 +56,7 @@ export {
     NavigationHelper,
     StorageUtils,
     ToastUtils,
+    StyleSheet,
 
     YZButton,
     YZListItem,
@@ -63,5 +68,9 @@ export {
     YZFloatLayout,
     YZRadio,
     YZField,
-    TouchableOpacity
+    TouchableOpacity,
+    Image,
+    Text,
+    View,
+    ScrollView
 }
