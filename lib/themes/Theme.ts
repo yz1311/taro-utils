@@ -100,6 +100,7 @@ const Theme = {
     },
 
     get screenInset() {
+        let systemInfo = Taro.getSystemInfoSync();
         let isLandscape = this.isLandscape;
         let isIPhoneX = this.isIPhoneX;
         let fitIPhoneX = this.fitIPhoneX;
