@@ -125,6 +125,19 @@ import '@yz1311/taro-utils/lib/style/tachyons.min.css';
 
 ## 组件
 
+### View
+
+https://github.com/Leooonard/react-native-study/issues/6
+
+还原RN的样式
+
+* overflow: hidden,虽然RN支持visible，但是在android中一直是无效的，所以目前统一设定为hidden
+* display: flex,RN中只有flex布局
+* flexDirection: column,RN中默认是垂直向的
+* position: relative
+* box-sizing: borer-box
+* align-content: flex-start
+
 ### YZButton
 
 简单封装的Button组件

@@ -4,6 +4,8 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+  align-content: flex-start;
   &:active {
     opacity: 0.7;
   }

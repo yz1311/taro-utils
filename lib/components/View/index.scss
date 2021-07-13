@@ -4,4 +4,6 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+  align-content: flex-start;
 }
